@@ -1,0 +1,122 @@
+<!doctype html>
+<html th:replace="layouts/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+
+
+   <div class="container mt-5">
+       <section id="employeeDetail">
+
+           <div class="container my-5">
+               <div class="row">
+                   <div class="col">
+                       <div class="card bg-dark">
+                           <div class="card-header">
+                               <h1 class="text-white">Employee </h1>
+                           </div>
+                           <div class="card-body">
+
+                               <table class="table table-striped">
+                                   <thead>
+                                   <tr>
+                                       <th class="text-white">Employee Id</th>
+                                       <th class="text-white">Name</th>
+                                       <th class="text-white">NRC</th>
+                                       <th class="text-white">Role</th>
+                                       <th class="text-white">Department</th>
+                                       <th class="text-white">Phone</th>
+                                       <th class="text-white">Email</th>
+                                       <th class="text-white">Date of Birth</th>
+                                       <th class="text-white">Township</th>
+                                       <th class="text-white">Address</th>
+
+                                   </tr>
+                                   </thead>
+                                   <tbody>
+                                   <tr th:each="emp : ${employees}" >
+
+                                       <td class="text-white" th:text="${emp.id}"></td>
+                                       <td class="text-white" th:text="${emp.name}"></td>
+                                       <td class="text-white" th:text="${emp.nrc}"></td>
+                                       <td class="text-white" th:text="${emp.role}"></td>
+                                       <td class="text-white" th:text="${emp.department}"></td>
+                                       <td class="text-white" th:text="${emp.phone}"></td>
+                                       <td class="text-white" th:text="${emp.email}"></td>
+                                       <td class="text-white" th:text="${emp.dateOfBirth}"></td>
+                                       <td class="text-white" th:text="${emp.township}"></td>
+                                       <td class="text-white" th:text="${emp.address}"></td>
+
+
+
+                                   </tr>
+                                   </tbody>
+
+                               </table>
+
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+       </section>
+       <section id="employeeLeave">
+
+           <div class="container my-5">
+               <div class="row">
+                   <div class="col">
+                       <div class="card bg-dark">
+                           <div class="card-header">
+                               <h1 class="text-white">Employee Detail</h1>
+                           </div>
+                           <div class="card-body">
+
+                               <table class="table table-striped">
+                                   <thead>
+                                   <tr>
+                                       <th class="text-white">Employee Id</th>
+                                       <th class="text-white">Leave Type</th>
+                                       <th class="text-white">From Date</th>
+                                       <th class="text-white">To Date</th>
+                                       <th class="text-white">Date Duration</th>
+                                       <th class="text-white"></th>
+
+                                   </tr>
+                                   </thead>
+                                   <tbody>
+                                   <tr th:each="emp : ${employeeLeaves}" >
+
+                                       <td class="text-white" th:text="${emp.employee.id}"></td>
+                                       <td class="text-white" th:text="${emp.leaveType}"></td>
+                                       <td class="text-white" th:text="${emp.fromDate}"></td>
+                                       <td class="text-white" th:text="${emp.toDate}"></td>
+                                       <td class="text-white" th:text="${emp.leaveDuration}"></td>
+
+
+
+                                   </tr>
+                                   </tbody>
+
+
+
+
+
+
+
+
+
+
+                               </table>
+
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+       </section>
+   </div>
+</main>
+</body>
+</html>

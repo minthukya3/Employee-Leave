@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<nav th:fragment="navBar" class="navbar navbar-expand-md navbar-dark bg-dark text-white">
+    <div class="container ">
+        <a th:href="@{/}" class="navbar-brand btn btn-dark  text-white" >Employee</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#MyNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="MyNav" class="justify-content-end collapse navbar-collapse">
+
+            <ul class="navbar-nav ml-auto ms-2">
+                <li class="nav-item">
+                    <a th:href="@{/employee-list}" class="navbar-link btn btn-dark text-white me-2"><i class="fas fa-user  me-1 btn-info"></i>Employee List</a>
+                </li>
+
+            </ul>
+            <form class="d-flex" th:action="@{/search}" method="get">
+                <input class="form-control me-2"  name="keyword" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary " type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+</nav>
+</body>
+</html>

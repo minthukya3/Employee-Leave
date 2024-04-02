@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html th:replace="layouts/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+
+        .fixed-size-btn {
+            width: 80px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<main role="main" >
+    <div class="container mt-5">
+        <section id="employeeForm">
+            <div class="row ">
+                <div class="col">
+                    <div class="card bg-dark ">
+                        <div class="card-header bg-dark">
+                            <h1 class="text-white  ">Employee Form</h1>
+                        </div>
+                        <div class="card-body">
+
+                            <form th:object="${employee}"  th:action="@{/update-process}"  method="post">
+
+
+
+
+                                <div class="row">
+                                    <div class="form-group card  ms-auto me-5  mb-3 bg-dark   col-5 ">
+                                        <label for="employeeName" class="form-label text-white ">Name</label>
+                                        <input type="text" id="employeeName" class="form-control mb-2" th:field="*{name}">
+                                    </div>
+
+                                    <div class="form-group ms-auto me-5  card mb-3 col-5 bg-dark  ">
+                                        <label for="nrc" class="form-label text-white ">NRC</label>
+                                        <input type="text" id="nrc" class="form-control mb-2" th:field="*{nrc}">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class=" card ms-auto me-5   mb-3 bg-dark col-5   ">
+                                        <label for="role" class="form-label text-white  ">Role</label>
+                                        <select id="role" class="form-select mb-2" th:field="*{role}">
+                                            <option value="Employee Role" >Role</option>
+                                            <option th:each="type : ${T(com.example.employeeleave.entity.Role).values()}"
+                                                    th:value="${type}" th:text="${type}"></option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group card ms-auto me-5 mb-3 bg-dark col-5   ">
+                                        <label for="dep" class="form-label text-white  col-md-6">Department</label>
+                                        <select id="dep" class="form-select  mb-2" th:field="*{department}">
+                                            <option value="Department" >Department</option>
+                                            <option th:each="type : ${T(com.example.employeeleave.entity.Department).values()}"
+                                                    th:value="${type}" th:text="${type}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group  card ms-auto me-5  bg-dark  mb-3 col-5 ">
+                                        <label for="ph" class="form-label text-white  ">Phone</label>
+                                        <input type="text" id="ph" class="form-control mb-2" th:field="*{phone}" >
+                                    </div>
+
+                                    <div class="form-group  card ms-auto me-5   bg-dark mb-3 col-5 ">
+                                        <label for="email" class="form-label text-white  ">Email</label>
+                                        <input type="email" id="email" class="form-control mb-2" th:field="*{email}">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row ">
+                                    <div class="form-group ms-auto me-5  card mb-3 bg-dark  col-5">
+                                        <label for="dob" class="form-label col-md-6 text-white ">Date of Birth</label>
+                                        <input type="date" id="dob" class="form-control mb-2" th:field="*{dateOfBirth}">
+                                    </div>
+
+
+                                    <div class="form-group ms-auto me-5 card mb-3 col-5 bg-dark ">
+                                        <label for="township" class="form-label col-md-6 text-white ">Township</label>
+                                        <input type="text" id="township" class="form-control mb-2" th:field="*{township}">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group card bg-dark ms-5 me-5 mb-3 col-11 ">
+                                        <label for="address" class="form-label text-white  col-md-6">Address</label>
+                                        <textarea id="address" class="form-control mb-2 " rows="3" th:field="*{address}" ></textarea>
+                                    </div>
+
+                                </div>
+                                <section id="employeeDetail">
+
+                                    <div class="container my-5">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card bg-dark">
+                                                    <div class="card-header">
+                                                        <h1 class="text-white">Employee Detail</h1>
+                                                    </div>
+                                                    <div class="card-body">
+
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                            <tr>
+                                                                <!--    <th class="text-white">Employee Id</th>-->
+                                                                <th class="text-white">Leave Type</th>
+                                                                <th class="text-white">From Date</th>
+                                                                <th class="text-white">To Date</th>
+                                                                <th class="text-white">Date Duration</th>
+                                                                <th class="text-white"></th>
+
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr th:each="emp : ${employeeLeaves}" >
+
+                                                                <!--  <td class="text-white" th:text="${emp.employee.id}"></td>-->
+                                                                <td class="text-white" th:text="${emp.leaveType}"></td>
+                                                                <td class="text-white" th:text="${emp.fromDate}"></td>
+                                                                <td class="text-white" th:text="${emp.toDate}"></td>
+                                                                <td class="text-white" th:text="${emp.leaveDuration}"></td>
+
+                                                                <td><a class="btn btn-danger fixed-size-btn" th:href="@{'/employeeDetail-delete?id=' + ${emp.id}}" >Delete</a></td>
+
+
+                                                            </tr>
+                                                            </tbody>
+
+                                                            <tbody>
+                                                            <tr>
+
+                                                                <form th:object="${addEmployeeDetail}"  method="post">
+                                                                    <!-- <td>
+                                                                         <div class="form-group">
+                                                                             <input   type="text" th:field="*{employee.id}">
+                                                                         </div>
+                                                                     </td>-->
+                                                                    <td>
+                                                                        <div class="form-group ">
+
+
+                                                                            <select  th:field="*{leaveType}">
+                                                                                <option value="Leave Type" >Leave Type</option>
+                                                                                <option th:each="type : ${T(com.example.employeeleave.entity.LeaveType).values()}"
+                                                                                        th:value="${type}" th:text="${type}"></option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group ">
+                                                                            <input   type="date"  th:field="*{fromDate}">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group ">
+                                                                            <input  type="date"  th:field="*{toDate}">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group ">
+                                                                            <input type="text"  th:field="*{leaveDuration}">
+                                                                        </div>
+                                                                    </td>
+
+                                                                    <!--   <button type="button" onclick="addEmployeeDetail()">Add EntityMany</button>-->
+
+                                                                    <!--    <td><input type="submit" class="btn btn-success fixed-size-btn"
+                                                                                   th:value="Add"></td>-->
+
+                                                                </form>
+                                                            </tr>
+                                                            </tbody>
+
+
+
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </section>
+                                <input class="btn btn-primary ms-5 fixed-size-btn" type="submit" value="Save" >
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </section>
+
+
+    </div>
+
+
+
+</main>
+
+</body>
+</html>
